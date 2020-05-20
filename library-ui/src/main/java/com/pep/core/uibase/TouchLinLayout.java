@@ -67,17 +67,14 @@ public class TouchLinLayout extends LinearLayout {
                     int absX = Math.abs(tslideX);
                     int absY = Math.abs(tslideY);
                     if (absX > absY) {
-                        Log.e("TouchLinLayout", " dispatchTouchEvent ACTION_MOVE 1111111111111111");
                         isLeftRight = 1;
                     } else {
                         isLeftRight = 2;
-                        Log.e("TouchLinLayout", " dispatchTouchEvent ACTION_MOVE 22222222222222222");
                     }
                 }
 
 
             case MotionEvent.ACTION_UP:
-                Log.e("TouchLinLayout", " dispatchTouchEvent ACTION_UP 111111111111111111111");
                 if (isLeftRight == 1) {
                     onTouchThisEvent(motionEvent);
                 }
