@@ -4,7 +4,7 @@
     <application>
         <provider
             android:name="com.pep.core.libcommon.MyProvider"
-            android:authorities="${applicatFileProviderionId}.myfileprovider.pep"
+            android:authorities="com.pep.core.libcommon.myfileprovider.pep"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
