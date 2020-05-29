@@ -340,7 +340,7 @@ public class CaptureUtil {
     public static Uri getUri(Context context, File outFile){
         Uri uri;
         if (Build.VERSION.SDK_INT >= 24) {
-            uri = FileProvider.getUriForFile(context, "com.pep.core.libcommon.myfileprovider.pep", outFile);
+            uri = FileProvider.getUriForFile(context, context.getPackageName()+".myfileprovider.pep", outFile);
         } else {
             uri = Uri.fromFile(outFile);
         }
