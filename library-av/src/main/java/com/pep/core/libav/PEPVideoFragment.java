@@ -97,7 +97,6 @@ public class PEPVideoFragment extends DialogFragment {
     private TextView tvPlayerPosition, tvPlayerDuration;
     private ImageView btnPlay, playFull, icClose;
     private View contentView, viewHolder, layoutProgress, llButtom, viewBlack;
-    private boolean isPortrait;
 
 
     @Override
@@ -153,11 +152,9 @@ public class PEPVideoFragment extends DialogFragment {
         if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             //竖屏
             playFull.setVisibility(View.VISIBLE);
-            isPortrait = true;
         } else {
             //横屏
             playFull.setVisibility(View.INVISIBLE);
-            isPortrait = false;
         }
     }
 
@@ -300,11 +297,6 @@ public class PEPVideoFragment extends DialogFragment {
 //                    icClose.setVisibility(View.VISIBLE);
 //                    return true;
 //                }
-                if (isPortrait){
-                    ((Activity) Objects.requireNonNull(getContext())).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                }else{
-                    ((Activity) Objects.requireNonNull(getContext())).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                }
                 ((Activity) Objects.requireNonNull(getContext())).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
                 return false;
             }
