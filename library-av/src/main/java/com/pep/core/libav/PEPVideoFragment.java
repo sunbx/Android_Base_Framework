@@ -129,7 +129,7 @@ public class PEPVideoFragment extends DialogFragment {
         btnPlay.setOnClickListener(playClickListener);
         icClose.setOnClickListener(closeClickListener);
 //        playFull.setOnClickListener(playFullClickListener);
-        Objects.requireNonNull(getDialog()).setOnKeyListener(dialogInterface);
+//        Objects.requireNonNull(getDialog()).setOnKeyListener(dialogInterface);
         viewBlack.setOnClickListener(viewBlackListener);
     }
 
@@ -282,21 +282,21 @@ public class PEPVideoFragment extends DialogFragment {
     /**
      * The Dialog interface.
      */
-    private DialogInterface.OnKeyListener dialogInterface = new DialogInterface.OnKeyListener() {
-        @Override
-        public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
-            if (KEYCODE_BACK == i) {
-//                if (isFullScreen()) {
-//                    ((Activity) Objects.requireNonNull(getContext())).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-//                    playFull.setImageResource(R.drawable.ic_media_fullscreen_stretch);
-//                    icClose.setVisibility(View.VISIBLE);
-//                    return true;
-//                }
-                return false;
-            }
-            return false;
-        }
-    };
+//    private DialogInterface.OnKeyListener dialogInterface = new DialogInterface.OnKeyListener() {
+//        @Override
+//        public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
+//            if (KEYCODE_BACK == i) {
+////                if (isFullScreen()) {
+////                    ((Activity) Objects.requireNonNull(getContext())).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+////                    playFull.setImageResource(R.drawable.ic_media_fullscreen_stretch);
+////                    icClose.setVisibility(View.VISIBLE);
+////                    return true;
+////                }
+//                return false;
+//            }
+//            return false;
+//        }
+//    };
 
 
     /**
