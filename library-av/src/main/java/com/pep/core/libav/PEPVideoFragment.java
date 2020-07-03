@@ -286,13 +286,9 @@ public class PEPVideoFragment extends DialogFragment {
         @Override
         public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
             if (KEYCODE_BACK == i) {
-                // 关闭 Dialog
-                dismiss();
-                // 关闭当前 Activity
                 if (listener !=null){
                     listener.onClick(null);
                 }
-                // 返回 true，表示返回事件已被处理，不再向下传递
                 return true;
             }
             return false;
@@ -389,7 +385,6 @@ public class PEPVideoFragment extends DialogFragment {
     private View.OnClickListener closeClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            dismiss();
             if (listener !=null){
                 listener.onClick(view);
             }
