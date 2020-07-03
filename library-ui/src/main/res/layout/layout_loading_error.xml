@@ -24,7 +24,7 @@
             android:layout_width="100dp"
             android:layout_height="47dp"
             android:layout_marginTop="10dp"
-            android:layout_gravity="center"
+            android:gravity="center"
             android:background="@drawable/select_common_button_bg"
             android:text="点击重试"/>
     </LinearLayout>
