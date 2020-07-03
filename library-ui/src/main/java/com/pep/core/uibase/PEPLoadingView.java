@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -59,7 +60,8 @@ public class PEPLoadingView extends RelativeLayout {
             layoutLoadingError = View.inflate(mContext, R.layout.layout_loading_error, null);
 
             layoutLoadingLoad.setOnClickListener(null);
-            layoutLoadingError.setOnClickListener(new OnClickListener() {
+            Button button = layoutLoadingError.findViewById(R.id.btn_restart);
+            button.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     setLoadingType(PEP_LOADING_LOAD);
