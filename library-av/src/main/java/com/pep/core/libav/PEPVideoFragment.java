@@ -204,11 +204,11 @@ public class PEPVideoFragment extends DialogFragment {
      */
     private void toggleFullScreen() {
         if (isFullScreen()) {
-            ((Activity) Objects.requireNonNull(getContext())).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            ((Activity) Objects.requireNonNull(getContext())).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
             playFull.setImageResource(R.drawable.ic_media_fullscreen_stretch);
             icClose.setVisibility(View.VISIBLE);
         } else {
-            ((Activity) Objects.requireNonNull(getContext())).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            ((Activity) Objects.requireNonNull(getContext())).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
             playFull.setImageResource(R.drawable.ic_media_fullscreen_shrink);
             icClose.setVisibility(View.GONE);
         }
@@ -292,7 +292,7 @@ public class PEPVideoFragment extends DialogFragment {
         public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
             if (KEYCODE_BACK == i) {
                 if (isFullScreen()) {
-                    ((Activity) Objects.requireNonNull(getContext())).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                    ((Activity) Objects.requireNonNull(getContext())).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
                     playFull.setImageResource(R.drawable.ic_media_fullscreen_stretch);
                     icClose.setVisibility(View.VISIBLE);
                     return true;

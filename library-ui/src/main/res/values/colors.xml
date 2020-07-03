@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>>
+
+    <!-- 按压 -->
+    <color name="ui_textcolor">#bbbbbb</color>
+    <color name="ui_captchacolor">#9a9a9a</color>
+</resources>
