@@ -97,6 +97,7 @@ public class PEPVideoFragment extends DialogFragment {
     private TextView tvPlayerPosition, tvPlayerDuration;
     private ImageView btnPlay, playFull, icClose;
     private View contentView, viewHolder, layoutProgress, llButtom, viewBlack;
+    private View.OnClickListener listener;
 
 
     @Override
@@ -127,7 +128,7 @@ public class PEPVideoFragment extends DialogFragment {
         videoPlayer.addListener(playbackParameters);
         btnPlay.setOnClickListener(playClickListener);
         icClose.setOnClickListener(closeClickListener);
-        playFull.setOnClickListener(playFullClickListener);
+//        playFull.setOnClickListener(playFullClickListener);
         Objects.requireNonNull(getDialog()).setOnKeyListener(dialogInterface);
         viewBlack.setOnClickListener(viewBlackListener);
     }
@@ -149,13 +150,7 @@ public class PEPVideoFragment extends DialogFragment {
         layoutProgress = contentView.findViewById(R.id.layout_progress);
         llButtom = contentView.findViewById(R.id.ll_buttom);
 
-        if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            //竖屏
-            playFull.setVisibility(View.VISIBLE);
-        } else {
-            //横屏
-            playFull.setVisibility(View.INVISIBLE);
-        }
+        playFull.setVisibility(View.INVISIBLE);
     }
 
     /**
@@ -297,7 +292,6 @@ public class PEPVideoFragment extends DialogFragment {
 //                    icClose.setVisibility(View.VISIBLE);
 //                    return true;
 //                }
-                ((Activity) Objects.requireNonNull(getContext())).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
                 return false;
             }
             return false;
@@ -394,7 +388,10 @@ public class PEPVideoFragment extends DialogFragment {
     private View.OnClickListener closeClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            dismiss();
+            if (listener !=null){
+                listener.onClick(view);
+            }
+
         }
     };
 
@@ -468,8 +465,10 @@ public class PEPVideoFragment extends DialogFragment {
 
     };
 
+    public void setOnCloseListener(View.OnClickListener listener){
 
-
+        this.listener = listener;
+    }
 
     @Override
     public void onResume() {
