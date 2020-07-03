@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -147,6 +148,14 @@ public class PEPVideoFragment extends DialogFragment {
         viewHolder = contentView.findViewById(R.id.view_holder);
         layoutProgress = contentView.findViewById(R.id.layout_progress);
         llButtom = contentView.findViewById(R.id.ll_buttom);
+
+        if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            //竖屏
+            playFull.setVisibility(View.VISIBLE);
+        } else {
+            //横屏
+            playFull.setVisibility(View.GONE);
+        }
     }
 
     /**
