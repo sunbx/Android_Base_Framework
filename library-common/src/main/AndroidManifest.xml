@@ -3,7 +3,7 @@
 
     <application>
         <provider
-            android:name="androidx.core.content.FileProvider"
+            android:name="com.pep.core.libcommon.MyProvider"
             android:authorities="${applicationId}.myfileprovider.pep"
             android:exported="false"
             android:grantUriPermissions="true">
