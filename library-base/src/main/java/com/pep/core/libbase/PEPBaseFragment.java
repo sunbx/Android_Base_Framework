@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 public abstract class PEPBaseFragment extends Fragment implements View.OnClickListener {
 
     public LinearLayout rootView;
-    private View contentView;
+    public View contentView;
 
     @Nullable
     @Override
