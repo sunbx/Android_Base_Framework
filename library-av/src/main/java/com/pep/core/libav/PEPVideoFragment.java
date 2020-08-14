@@ -476,6 +476,17 @@ public class PEPVideoFragment extends DialogFragment {
         }
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (playWhenReady) {
+            videoPlayer.setPlayWhenReady(false);
+            btnPlay.setImageResource(R.drawable.ic_seek_play);
+        } else {
+            videoPlayer.setPlayWhenReady(true);
+            btnPlay.setImageResource(R.drawable.ic_media_stop);
+        }
+    }
 
     @Override
     public void onDestroy() {
