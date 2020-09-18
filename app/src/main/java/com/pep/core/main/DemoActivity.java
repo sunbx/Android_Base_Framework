@@ -1,5 +1,6 @@
 package com.pep.core.main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -39,6 +40,9 @@ import com.pep.core.view.AnimateDemoDialog;
 import com.squareup.leakcanary.LeakCanary;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -218,9 +222,13 @@ public class DemoActivity extends PEPBaseActivity implements DemoContract.View {
             case R.id.btn_image_page:
 
                 ArrayList<String> urls = new ArrayList<>();
-                urls.add("/data/data/com.pep.szjc.simple.new/files/pepbook/resource/pub_cloud/21/1263001101121/126300110112120180612134750361/c11_001_01.jpg");
 
-
+                String cacheFile = getAssetsCacheFile(this, "生活中的分数1.png");
+                urls.add(cacheFile);
+                urls.add(cacheFile);
+                urls.add(cacheFile);
+                urls.add(cacheFile);
+                urls.add(cacheFile);
                 PEPPhotoPageFragment pepPhotoPageFragment = new PEPPhotoPageFragment();
                 pepPhotoPageFragment.addUrls(urls);
                 pepPhotoPageFragment.show(getSupportFragmentManager(), "PEPPhotoPageFragment");
@@ -274,6 +282,29 @@ public class DemoActivity extends PEPBaseActivity implements DemoContract.View {
                 break;
             default:
         }
+    }
+    public String getAssetsCacheFile(Context context, String fileName)   {
+        File cacheFile = new File(context.getCacheDir(), fileName);
+        try {
+            InputStream inputStream = context.getAssets().open(fileName);
+            try {
+                FileOutputStream outputStream = new FileOutputStream(cacheFile);
+                try {
+                    byte[] buf = new byte[1024];
+                    int len;
+                    while ((len = inputStream.read(buf)) > 0) {
+                        outputStream.write(buf, 0, len);
+                    }
+                } finally {
+                    outputStream.close();
+                }
+            } finally {
+                inputStream.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return cacheFile.getAbsolutePath();
     }
 
     /**

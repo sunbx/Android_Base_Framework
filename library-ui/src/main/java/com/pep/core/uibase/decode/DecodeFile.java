@@ -25,7 +25,7 @@ public class DecodeFile {
         }
         return  instance;
     }
-    public boolean decodeFile(File encodeFile, File decodeFile)
+    public static boolean decodeFile(File encodeFile, File decodeFile)
     {
         
         boolean           bl                = false;
