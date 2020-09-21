@@ -63,8 +63,11 @@ public class PhotoPageViewFragment extends Fragment {
                     public void run() {
                         long startTime = System.currentTimeMillis();
                         Log.d("PEP", "" + startTime);
-                        final String tempPath = getActivity().getCacheDir() + "/temp.png";
-                        DecodeFile.decodeFile(file, new File(tempPath));
+                        final String tempPath = getActivity().getCacheDir() + "/temp_"+file.getName()+".png";
+                        if(!new File(tempPath).exists()){
+                            DecodeFile.decodeFile(file, new File(tempPath));
+                        }
+
                         //使用使用Glide进行加载图片进行加载图片
 //                final Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
                         long endTime = System.currentTimeMillis();
