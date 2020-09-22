@@ -2,6 +2,7 @@ package com.pep.core.uibase;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +14,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.RequestFutureTarget;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.pep.core.libimage.PEPImageManager;
 import com.pep.core.uibase.decode.DecodeFile;
 
@@ -75,8 +81,22 @@ public class PhotoPageViewFragment extends Fragment {
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Glide.with(getActivity()).load(tempPath).into(image);
-                                    progress.setVisibility(View.GONE);
+                                    Glide.with(getActivity()).load(tempPath).listener(new RequestListener<Drawable>() {
+                                        @Override
+                                        public boolean onLoadFailed(@Nullable GlideException e, Object model,
+                                                                    Target<Drawable> target, boolean isFirstResource) {
+                                            progress.setVisibility(View.GONE);
+                                            return false;
+                                        }
+
+                                        @Override
+                                        public boolean onResourceReady(Drawable resource, Object model,
+                                                                       Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                            progress.setVisibility(View.GONE);
+                                            return false;
+                                        }
+                                    }).into(image);
+
                                 }
                             });
                         }

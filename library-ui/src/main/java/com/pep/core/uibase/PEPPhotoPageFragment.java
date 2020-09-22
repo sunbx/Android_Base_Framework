@@ -55,6 +55,7 @@ public class PEPPhotoPageFragment extends DialogFragment {
             return;
         }
         ImageOriginPager viewPager = contentView.findViewById(R.id.viewPager);
+        viewPager.setOffscreenPageLimit(5);
         CirclePageIndicator circlePage = contentView.findViewById(R.id.circlePage);
         PhotoPageAdapter photoPageAdapter = new PhotoPageAdapter(getChildFragmentManager());
         viewPager.setAdapter(photoPageAdapter);
