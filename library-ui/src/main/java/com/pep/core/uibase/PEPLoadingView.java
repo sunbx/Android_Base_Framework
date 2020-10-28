@@ -100,10 +100,10 @@ public class PEPLoadingView extends RelativeLayout {
                     public boolean handleMessage(@NonNull Message message) {
                         layoutLoadingLoad.setVisibility(View.INVISIBLE);
                         layoutLoadingError.setVisibility(View.INVISIBLE);
-                        removeView(layoutLoadingError);
-                        removeView(layoutLoadingLoad);
-                        layoutLoadingLoad = null;
-                        layoutLoadingError = null;
+//                        removeView(layoutLoadingError);
+//                        removeView(layoutLoadingLoad);
+//                        layoutLoadingLoad = null;
+//                        layoutLoadingError = null;
                         return false;
                     }
 
