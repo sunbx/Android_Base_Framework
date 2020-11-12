@@ -1,7 +1,5 @@
 package com.pep.core.uibase;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,18 +14,12 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.bumptech.glide.request.RequestFutureTarget;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.pep.core.libimage.PEPImageManager;
 import com.pep.core.uibase.decode.DecodeFile;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.math.BigDecimal;
 
 import uk.co.senab.photoview.PhotoView;
 import uk.co.senab.photoview.PhotoViewAttacher;
@@ -60,6 +52,7 @@ public class PhotoPageViewFragment extends Fragment {
         String          url   = (String) getArguments().get("url");
         if (url.contains("http://") || url.contains("https://")) {
             PEPImageManager.getInstance().load(this, image, url);
+            progress.setVisibility(View.GONE);
         } else {
             final File file = new File(url);
             if (file.exists()) {
