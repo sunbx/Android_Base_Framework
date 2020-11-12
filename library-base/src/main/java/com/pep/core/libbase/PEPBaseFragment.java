@@ -6,11 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.pep.core.uibase.PEPProgressView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.pep.core.uibase.PEPProgressView;
 
 
 public abstract class PEPBaseFragment extends Fragment implements View.OnClickListener {
@@ -31,9 +31,13 @@ public abstract class PEPBaseFragment extends Fragment implements View.OnClickLi
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initView();
-        initData();
-        initListener();
+        try {
+            initView();
+            initData();
+            initListener();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void addContentView(View contentView) {

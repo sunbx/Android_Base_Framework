@@ -1,6 +1,5 @@
 package com.pep.core.libbase;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
@@ -26,9 +25,13 @@ public abstract class PEPBaseLayoutActivity<A extends PEPBaseActivity, P extends
 
     private void init() {
         View.inflate(getContext(), getLayoutId(), this);
-        initView();
-        initData();
-        initListener();
+        try {
+            initView();
+            initData();
+            initListener();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

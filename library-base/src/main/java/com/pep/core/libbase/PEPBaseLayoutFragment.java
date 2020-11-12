@@ -25,9 +25,13 @@ public abstract class PEPBaseLayoutFragment<F extends PEPBaseFragment, P extends
 
     private void init() {
         View.inflate(getContext(), getLayoutId(), this);
-        initView();
-        initData();
-        initListener();
+        try {
+            initView();
+            initData();
+            initListener();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
