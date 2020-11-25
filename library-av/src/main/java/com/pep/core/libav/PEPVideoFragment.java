@@ -9,17 +9,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.Player;
@@ -39,19 +40,13 @@ import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
-import java.util.Formatter;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-
 import static android.view.KeyEvent.KEYCODE_BACK;
-import static com.pep.core.libav.PEPAvType.VIDEO_TYPE_M3U8;
 import static com.pep.core.libav.PEPAvType.VIDEO_TYPE_DEF;
+import static com.pep.core.libav.PEPAvType.VIDEO_TYPE_M3U8;
 import static com.pep.core.libav.PEPAvType.VIDEO_TYPE_RTMP;
 
 
@@ -129,7 +124,7 @@ public class PEPVideoFragment extends DialogFragment {
         btnPlay.setOnClickListener(playClickListener);
         icClose.setOnClickListener(closeClickListener);
 //        playFull.setOnClickListener(playFullClickListener);
-        Objects.requireNonNull(getDialog()).setOnKeyListener(dialogInterface);
+//        Objects.requireNonNull(getDialog()).setOnKeyListener(dialogInterface);
         viewBlack.setOnClickListener(viewBlackListener);
     }
 
@@ -157,8 +152,8 @@ public class PEPVideoFragment extends DialogFragment {
      * init data
      */
     private void initData() {
-        //屏幕常亮
-        Objects.requireNonNull(Objects.requireNonNull(getDialog()).getWindow()).addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+//        //屏幕常亮
+//        Objects.requireNonNull(Objects.requireNonNull(getDialog()).getWindow()).addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         //线程池
         ExecutorService exec = Executors.newSingleThreadExecutor();
         exec.execute(new WorkTask());
