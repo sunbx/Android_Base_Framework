@@ -93,8 +93,8 @@ public class PEPPhotoPageFragment extends DialogFragment {
             photoPageViewFragment.setOnClickListener(new PhotoPageViewFragment.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    dismiss();
                     if (listener != null){
-                        dismiss();
                         listener.onClick(view);
                     }
 
