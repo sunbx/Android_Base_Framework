@@ -26,6 +26,7 @@ public class PEPPhotoPageFragment extends DialogFragment {
 
     private View contentView;
     private ArrayList<String> urls = new ArrayList<>();
+    private View.OnClickListener listener;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -92,7 +93,11 @@ public class PEPPhotoPageFragment extends DialogFragment {
             photoPageViewFragment.setOnClickListener(new PhotoPageViewFragment.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    dismiss();
+                    if (listener != null){
+                        dismiss();
+                        listener.onClick(view);
+                    }
+
                 }
             });
             return photoPageViewFragment;
@@ -105,5 +110,8 @@ public class PEPPhotoPageFragment extends DialogFragment {
 
     }
 
+    public void setOnCloseListener(View.OnClickListener listener){
 
+        this.listener = listener;
+    }
 }
