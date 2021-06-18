@@ -39,14 +39,20 @@ public abstract class PEPBaseActivity extends SwipeBackActivity implements View.
         rootView = (LinearLayout) findViewById(R.id.rootView);
         initStatus();
 
-
-        try {
+        if (BuildConfig.IS_DEBUGER){
             initView();
             initData();
             initListener();
-        } catch (Exception e) {
-            e.printStackTrace();
+        }else{
+            try {
+                initView();
+                initData();
+                initListener();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+
     }
 
     public void addContentView(View contentView) {

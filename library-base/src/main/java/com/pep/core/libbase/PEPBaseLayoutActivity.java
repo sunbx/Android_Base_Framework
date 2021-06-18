@@ -25,12 +25,19 @@ public abstract class PEPBaseLayoutActivity<A extends PEPBaseActivity, P extends
 
     private void init() {
         View.inflate(getContext(), getLayoutId(), this);
-        try {
+
+        if (BuildConfig.IS_DEBUGER){
             initView();
             initData();
             initListener();
-        } catch (Exception e) {
-            e.printStackTrace();
+        }else{
+            try {
+                initView();
+                initData();
+                initListener();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

@@ -13,6 +13,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+        buildConfigField "boolean", "IS_DEBUGER", "true"
     }
 
     buildTypes {
@@ -35,4 +36,23 @@ dependencies {
     api 'me.imid.swipebacklayout.lib:library:1.1.0'
 
     api project(path: ':library-ui')
+}
+
+gradle.startParameter.getTaskNames().each { task ->
+    println("task_name: " + task)
+    //library里 BuildConfig.DEBUG默认一直是flase;所以需要自定义
+    if(task.contains("Debug")){
+        android{
+            defaultConfig{
+                buildConfigField "boolean", "IS_DEBUGER", "true"
+            }
+        }
+
+    }else if(task.contains("Release")){
+        android{
+            defaultConfig{
+                buildConfigField "boolean", "IS_DEBUGER", "false"
+            }
+        }
+    }
 }
