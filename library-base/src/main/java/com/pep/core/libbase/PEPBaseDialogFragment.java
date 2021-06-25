@@ -79,7 +79,7 @@ public abstract class PEPBaseDialogFragment extends DialogFragment {
 
         Objects.requireNonNull(getDialog()).setOnKeyListener(dialogInterface);
 
-        if (BuildConfig.IS_DEBUGER){
+        if (DebugUtil.BASE_IS_DEBUG){
             initView();
             initData();
         }else{

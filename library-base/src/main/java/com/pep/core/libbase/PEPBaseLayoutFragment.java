@@ -25,7 +25,7 @@ public abstract class PEPBaseLayoutFragment<F extends PEPBaseFragment, P extends
 
     private void init() {
         View.inflate(getContext(), getLayoutId(), this);
-        if (BuildConfig.IS_DEBUGER){
+        if (DebugUtil.BASE_IS_DEBUG){
             initView();
             initData();
             initListener();
