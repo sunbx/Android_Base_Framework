@@ -31,7 +31,7 @@ public abstract class PEPBaseFragment extends Fragment implements View.OnClickLi
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (BuildConfig.IS_DEBUGER){
+        if (DebugUtil.BASE_IS_DEBUG){
             initView();
             initData();
             initListener();
