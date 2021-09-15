@@ -126,36 +126,36 @@ public class PEPHttpManager {
         try {
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
-            X509TrustManager x509TrustManager = new X509TrustManager() {
-                @Override
-                public void checkClientTrusted(X509Certificate[] chain, String authType) {
-                }
+            // X509TrustManager x509TrustManager = new X509TrustManager() {
+            //     @Override
+            //     public void checkClientTrusted(X509Certificate[] chain, String authType) {
+            //     }
 
-                @Override
-                public void checkServerTrusted(X509Certificate[] chain, String authType) {
-                }
+            //     @Override
+            //     public void checkServerTrusted(X509Certificate[] chain, String authType) {
+            //     }
 
-                @Override
-                public X509Certificate[] getAcceptedIssuers() {
-                    return new X509Certificate[]{};
-                }
-            };
+            //     @Override
+            //     public X509Certificate[] getAcceptedIssuers() {
+            //         return new X509Certificate[]{};
+            //     }
+            // };
 
-            try {
-                final SSLContext sslContext = SSLContext.getInstance("SSL");
-                sslContext.init(null,new TrustManager[]{x509TrustManager},new SecureRandom());
-                builder.sslSocketFactory(sslContext.getSocketFactory(), x509TrustManager);
-                builder.hostnameVerifier(new HostnameVerifier() {
-                    @Override
-                    public boolean verify(String hostname, SSLSession session) {
-                        return true;
-                    }
-                });
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            } catch (KeyManagementException e) {
-                e.printStackTrace();
-            }
+            // try {
+            //     final SSLContext sslContext = SSLContext.getInstance("SSL");
+            //     sslContext.init(null,new TrustManager[]{x509TrustManager},new SecureRandom());
+            //     builder.sslSocketFactory(sslContext.getSocketFactory(), x509TrustManager);
+            //     builder.hostnameVerifier(new HostnameVerifier() {
+            //         @Override
+            //         public boolean verify(String hostname, SSLSession session) {
+            //             return true;
+            //         }
+            //     });
+            // } catch (NoSuchAlgorithmException e) {
+            //     e.printStackTrace();
+            // } catch (KeyManagementException e) {
+            //     e.printStackTrace();
+            // }
             OkHttpClient okHttpClient = builder.build();
             return okHttpClient;
         } catch (Exception e) {
