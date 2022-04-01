@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 29
@@ -41,4 +42,18 @@ dependencies {
     api project(path: ':library-http')
     api project(path: ':library-image')
     api project(path: ':library-av')
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+//                from components.release
+                groupId = 'com.pep.library'
+                artifactId = 'library'
+                version = '1.0'
+            }
+        }
+    }
 }

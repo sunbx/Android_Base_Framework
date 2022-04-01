@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 29
@@ -52,6 +53,20 @@ gradle.startParameter.getTaskNames().each { task ->
         android{
             defaultConfig{
                 buildConfigField "boolean", "IS_DEBUGER", "false"
+            }
+        }
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+//                from components.release
+                groupId = 'com.pep.library'
+                artifactId = 'library'
+                version = '1.0'
             }
         }
     }

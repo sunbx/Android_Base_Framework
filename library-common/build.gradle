@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -51,4 +52,18 @@ dependencies {
 //    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 
 
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+//                from components.release
+                groupId = 'com.pep.library'
+                artifactId = 'library'
+                version = '1.0'
+            }
+        }
+    }
 }
