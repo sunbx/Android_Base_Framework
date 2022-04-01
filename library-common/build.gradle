@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
+apply from: "$rootDir/gradle/publish.gradle"
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -54,16 +54,3 @@ dependencies {
 
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            // Creates a Maven publication called "release".
-            release(MavenPublication) {
-//                from components.release
-                groupId = 'com.pep'
-                artifactId = 'library-common'
-                version = '1.0'
-            }
-        }
-    }
-}

@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
+apply from: "$rootDir/gradle/publish.gradle"
 
 android {
     compileSdkVersion 29
@@ -46,18 +46,4 @@ dependencies {
     api 'com.google.android.exoplayer:exoplayer:2.10.4'
     api 'com.google.android.exoplayer:extension-rtmp:2.10.4'
 
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            // Creates a Maven publication called "release".
-            release(MavenPublication) {
-//                from components.release
-                groupId = 'com.pep'
-                artifactId = 'library-av'
-                version = '1.0'
-            }
-        }
-    }
 }

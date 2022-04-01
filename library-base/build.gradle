@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
+apply from: "$rootDir/gradle/publish.gradle"
 
 android {
     compileSdkVersion 29
@@ -37,6 +37,8 @@ dependencies {
     api 'me.imid.swipebacklayout.lib:library:1.1.0'
 
     api project(path: ':library-ui')
+    api project(path: ':library-common')
+    api project(path: ':library-count')
 }
 
 gradle.startParameter.getTaskNames().each { task ->
@@ -58,16 +60,3 @@ gradle.startParameter.getTaskNames().each { task ->
     }
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            // Creates a Maven publication called "release".
-            release(MavenPublication) {
-//                from components.release
-                groupId = 'com.pep'
-                artifactId = 'library-base'
-                version = '1.0'
-            }
-        }
-    }
-}

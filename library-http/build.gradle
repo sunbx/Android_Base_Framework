@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
+apply from: "$rootDir/gradle/publish.gradle"
 
 android {
     compileSdkVersion 29
@@ -44,18 +44,4 @@ dependencies {
     // gson
     api 'com.squareup.retrofit2:converter-gson:2.4.0'
 
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            // Creates a Maven publication called "release".
-            release(MavenPublication) {
-//                from components.release
-                groupId = 'com.pep'
-                artifactId = 'library-http'
-                version = '1.0'
-            }
-        }
-    }
 }
