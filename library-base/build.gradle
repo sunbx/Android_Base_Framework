@@ -36,9 +36,12 @@ dependencies {
     api 'com.nineoldandroids:library:2.4.0'
     api 'me.imid.swipebacklayout.lib:library:1.1.0'
 
-    api project(path: ':library-ui')
-    api project(path: ':library-common')
-    api project(path: ':library-count')
+    api project(':library-av')
+    api project(':library-ui')
+    api project(':library-http')
+    api project(':library-image')
+    api project(':library-common')
+    api project(':library-count')
 }
 
 gradle.startParameter.getTaskNames().each { task ->

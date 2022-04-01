@@ -10,6 +10,9 @@ afterEvaluate {
                 artifactId = PROJ_ARTIFACTID
                 version = "1.0"
 
+                pom {
+                    name = PROJ_NAME
+                }
             }
         }
     }

@@ -2,10 +2,12 @@
 
 
 buildscript {
+    apply from: "gradle/dependencies.gradle"
+
     repositories {
         google()
         jcenter()
-
+        gradlePluginPortal()
     }
 
     dependencies {
