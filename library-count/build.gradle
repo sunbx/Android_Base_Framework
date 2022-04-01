@@ -40,7 +40,7 @@ afterEvaluate {
             // Creates a Maven publication called "release".
             release(MavenPublication) {
 //                from components.release
-                groupId = 'com.pep.library-count'
+                groupId = 'com.pep'
                 artifactId = 'library-count'
                 version = '1.0'
             }
