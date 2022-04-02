@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -61,7 +60,7 @@ public class PEPHttpManager {
     /**
      * networkInterceptor.
      */
-    private ArrayList<Interceptor> networkInterceptor = new ArrayList<>();
+    private ArrayList<Interceptor>       networkInterceptor      = new ArrayList<>();
     /**
      * networConverterFactoryk.
      */
@@ -79,7 +78,7 @@ public class PEPHttpManager {
             throw new RuntimeException("baseUrl is null");
         }
         PEPHttpCoinfig.BASE_URL = baseUrl;
-        OkHttpClient.Builder builder = getOkHttpClient().newBuilder().connectTimeout(10, TimeUnit.SECONDS)
+        OkHttpClient.Builder builder = getUnsafeOkHttpClient().newBuilder().connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS);
         if (IS_DEBUG) {
@@ -123,97 +122,44 @@ public class PEPHttpManager {
         retrofitBuilder.addConverterFactory(GsonConverterFactory.create());
     }
 
-    private static OkHttpClient getOkHttpClient() {
+    private static OkHttpClient getUnsafeOkHttpClient() {
         try {
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
-            OkHttpClient okHttpClient;
-            if (IS_DEBUG) {
-                okHttpClient = getOkHttpClientTest();
-            } else {
-                okHttpClient = builder.build();
-            }
+
+            // X509TrustManager x509TrustManager = new X509TrustManager() {
+            //     @Override
+            //     public void checkClientTrusted(X509Certificate[] chain, String authType) {
+            //     }
+
+            //     @Override
+            //     public void checkServerTrusted(X509Certificate[] chain, String authType) {
+            //     }
+
+            //     @Override
+            //     public X509Certificate[] getAcceptedIssuers() {
+            //         return new X509Certificate[]{};
+            //     }
+            // };
+
+            // try {
+            //     final SSLContext sslContext = SSLContext.getInstance("SSL");
+            //     sslContext.init(null,new TrustManager[]{x509TrustManager},new SecureRandom());
+            //     builder.sslSocketFactory(sslContext.getSocketFactory(), x509TrustManager);
+            //     builder.hostnameVerifier(new HostnameVerifier() {
+            //         @Override
+            //         public boolean verify(String hostname, SSLSession session) {
+            //             return true;
+            //         }
+            //     });
+            // } catch (NoSuchAlgorithmException e) {
+            //     e.printStackTrace();
+            // } catch (KeyManagementException e) {
+            //     e.printStackTrace();
+            // }
+            OkHttpClient okHttpClient = builder.build();
             return okHttpClient;
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    /**
-     * 获取所有证书OkHttpClient
-     */
-    private static OkHttpClient getOkHttpClientTest() {
-        OkHttpClient client = null;
-        try {
-            X509TrustManager x509TrustManager = new X509TrustManager() {
-
-                @Override
-                public void checkServerTrusted(X509Certificate[] chain, String authType) {
-                }
-
-                @Override
-                public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-
-                }
-
-                @Override
-                public X509Certificate[] getAcceptedIssuers() {
-                    return new X509Certificate[]{};
-                }
-            };
-
-            SSLContext sslContext;
-            sslContext = SSLContext.getInstance("SSL");
-            sslContext.init(null, new TrustManager[]{x509TrustManager}, new SecureRandom());
-            client = new OkHttpClient.Builder()
-                    .sslSocketFactory(sslContext.getSocketFactory(), x509TrustManager).hostnameVerifier(new HostnameVerifier() {
-                        @Override
-                        public boolean verify(String hostname, SSLSession session) {
-                            //关键代码，返回false证书验证，返回true信任所有证书。
-                            return true;
-                        }
-                    })
-                    .build();
-        } catch (Exception e) {
-            client = new OkHttpClient.Builder().build();
-            e.printStackTrace();
-        }
-        return client;
-    }
-
-
-    /**
-     * 设置测试证书
-     */
-    private static void setTestSSL(OkHttpClient.Builder builder) {
-        X509TrustManager x509TrustManager = new X509TrustManager() {
-            @Override
-            public void checkClientTrusted(X509Certificate[] chain, String authType) {
-            }
-
-            @Override
-            public void checkServerTrusted(X509Certificate[] chain, String authType) {
-            }
-
-            @Override
-            public X509Certificate[] getAcceptedIssuers() {
-                return new X509Certificate[]{};
-            }
-        };
-
-        try {
-            final SSLContext sslContext = SSLContext.getInstance("SSL");
-            sslContext.init(null, new TrustManager[]{x509TrustManager}, new SecureRandom());
-            builder.sslSocketFactory(sslContext.getSocketFactory(), x509TrustManager);
-            builder.hostnameVerifier(new HostnameVerifier() {
-                @Override
-                public boolean verify(String hostname, SSLSession session) {
-                    return true;
-                }
-            });
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (KeyManagementException e) {
-            e.printStackTrace();
         }
     }
 

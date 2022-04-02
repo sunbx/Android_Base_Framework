@@ -7,10 +7,11 @@ package com.pep.core.libnet;
  */
 public class PEPHttpCoinfig {
 
+
     /**
      * The constant IS_DEBUG.
      */
-    public static boolean IS_DEBUG = false;
+    public static boolean IS_DEBUG = true;
 
 
     /**
