@@ -6,13 +6,13 @@ afterEvaluate {
             release(MavenPublication){
                 from components.release
 
-                group = "com.pep"
-                artifactId = PROJ_ARTIFACTID
-                version = "1.0"
-
-                pom {
-                    name = PROJ_NAME
-                }
+//                group = "com.pep"
+//                artifactId = PROJ_ARTIFACTID
+//                version = "1.0"
+//
+//                pom {
+//                    name = PROJ_NAME
+//                }
             }
         }
     }
